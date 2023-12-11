@@ -1,0 +1,15 @@
+- name: download rpm
+    get_url:
+        url: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+        mode: 0755
+    with_items:
+    - { url: "{{ kubeadm_rpm_url }}", dest: "unknown" }
+    - { url: "{{ kubelet_rpm_url }}", dest: "unknown" }
+    - { url: "{{ kubectl_rpm_url }}", dest: "unknown" }
+    - { url: "{{ kube_cni_rpm_url }}", dest: "unknown" }
+
+- name: disable swap
+  shell: "source /etc/profile; swapoff -a && sysctl -w vm.swappiness=0"
+  ignore_errors: true
+

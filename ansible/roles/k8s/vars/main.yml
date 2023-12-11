@@ -1,0 +1,6 @@
+kubeadm_rpm_url: "unknown"
+kubelet_rpm_url: "unknown"
+kubectl_rpm_url: "unknown"
+kube_cni_rpm_url: "unknown"
+# if runtime is not defined use docker if k8s version <= 1.23 else containerd
+runtime: "{% if kube_runtime is not defined %}"
